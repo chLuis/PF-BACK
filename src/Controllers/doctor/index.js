@@ -63,7 +63,7 @@ export const getDoctors = async (req, res) => {
     try {
         const doctores = await Doctor.find();
         console.log("Probando")
-        const doctoresList = await Promise.all(doctores.map(async doctor => { 
+        const doctoresList = await Promise.all(doctores?.map(async doctor => { 
             const id_user = doctor._id
             const {_id, nombre, apellido, dni, direccion, telefono, mail, fechaNacimiento, password} = await Usuario.findById(doctor.usuario_id);
             return {

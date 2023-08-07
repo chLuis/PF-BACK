@@ -48,7 +48,7 @@ export const getUser = async (req, res) => {
 export const getUsers = async (req, res) => {    
         try {
             const users = await Usuario.find();
-            const userList = await Promise.all(users.map(async user => { 
+            const userList = await Promise.all(users?.map(async user => { 
                 return {
                     id_user: user._id,
                     nombre: user.nombre,
