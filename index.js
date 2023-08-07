@@ -27,4 +27,4 @@ app.use('/paciente', routerPaciente)
 app.use('/turno', routerTurno)
 
 dbConnect();
-app.listen(8080)
+app.listen(3000)
