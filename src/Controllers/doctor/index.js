@@ -62,7 +62,6 @@ export const getDoctor = async (req, res) => {
 export const getDoctors = async (req, res) => {
     try {
         const doctores = await Doctor.find();
-        console.log("Probando")
         const doctoresList = await Promise.all(doctores?.map(async doctor => { 
             const id_user = doctor._id
             const {_id, nombre, apellido, dni, direccion, telefono, mail, fechaNacimiento, password} = await Usuario.findById(doctor.usuario_id);
@@ -103,11 +102,11 @@ export const deleteDoctor = async (req, res) => {
 export const putDoctor = async (req, res) => {
     try{
         const {id} = req.params
-        console.log(id)
+        //console.log(id)
         const {nombre, apellido, dni, direccion, telefono, mail, fechaNacimiento, password, matricula, especialidad, aprobado} = req.body
         const doctor = await Doctor.findByIdAndUpdate(id, {matricula, especialidad, aprobado})
         const id_userDoc= doctor.usuario_id
-        console.log(id_userDoc)
+        //console.log(id_userDoc)
         const usuario = await Usuario.findByIdAndUpdate(id_userDoc, {nombre, apellido, dni, direccion, telefono, mail, fechaNacimiento, password})
         res.status(200).send(`Actualizaste a ${nombre} ${apellido} de la base de datos`)
     }

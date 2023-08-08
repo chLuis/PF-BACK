@@ -46,7 +46,7 @@ export const postTurno = async (req, res) => {
         await turno.save()
         res.status(201).send(`Turno creado: ${turno}`)
     } catch (error) {
-        console.log(error.message)
+        //console.log(error.message)
         res.status(400).send(error.message)
     }
 }

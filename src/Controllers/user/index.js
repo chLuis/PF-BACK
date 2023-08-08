@@ -42,6 +42,7 @@ export const getUser = async (req, res) => {
                 usuarioLog = usuario
             }
         }})
+        console.log(usuarioLog)
     res.status(200).send(usuarioLog)
     }
 
@@ -77,8 +78,8 @@ export const deleteUser = async (req, res) => {
     try{
         const {id} = req.params
         const {nombre, apellido, idLink} = await Usuario.findByIdAndDelete(id)
-        console.log(id)
-        console.log(idLink)
+        //console.log(id)
+        //console.log(idLink)
         await Doctor.findByIdAndDelete(idLink) || await Paciente.findByIdAndDelete(idLink)
         res.status(200).send(` Borraste a ${nombre} ${apellido}`)
     }

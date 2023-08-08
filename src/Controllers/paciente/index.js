@@ -71,7 +71,7 @@ export const putPaciente = async (req, res) => {
         const {id} = req.params
         const {nombre, apellido, dni, direccion, telefono, mail, fechaNacimiento, password, obraSocial} = req.body
         const paciente = await Paciente.findByIdAndUpdate(id, {obraSocial})
-        console.log(paciente)
+        //console.log(paciente)
         const pacienteId = (paciente.usuario_id)
         const user = await Usuario.findByIdAndUpdate(pacienteId, {nombre, apellido, dni, direccion, telefono, mail, fechaNacimiento, password, obraSocial})
         res.status(200).send(`Actualizaste a ${user.nombre} ${user.apellido}, ahora se llama ${nombre} ${apellido}`)
