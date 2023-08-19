@@ -40,11 +40,26 @@ export const getUser = async (req, res) => {
         if (usuario.dni === Number(dni)){
             const passValidation = compareSync(password, usuario.password) // Comparamos el passhash con el pass ingresada devuelve true o false
             if(passValidation){
-                        // const token = jwt.sign(
-        //     { dni, passwordHashed },
-        //     process.env.TOKEN_SECRET
-        // );
-                usuarioLog = usuario
+                        const token = jwt.sign(
+            { dni, password },
+            process.env.TOKEN_SECRET,
+            { expiresIn: '15m' }
+        );
+                const {_id, idLink, nombre, apellido, dni:dni_user , direccion, telefono, mail, fechaNacimiento, medico, administrador} = usuario
+                usuarioLog = {
+                    _id,
+                    idLink,
+                    nombre,
+                    apellido,
+                    dni: dni_user,
+                    direccion,
+                    telefono,
+                    mail,
+                    fechaNacimiento,
+                    medico,
+                    administrador,
+                    token: token
+                }
             }
         }})
     res.status(200).send(usuarioLog)
@@ -100,3 +115,4 @@ export const putUser = async (req, res) => {
     }
 
 }
+
