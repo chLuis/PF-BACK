@@ -31,6 +31,20 @@ export const putEspecialidad = async (req, res) => {
         res.status(500).send(error);
     }
 }
+
+export const patchEspecialidad = async (req, res) => {
+    try {
+        const especialidad = await Especialidad.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        );
+        res.status(200).send(especialidad);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 export const deleteEspecialidad = async (req, res) => {
     try {
         const especialidad = await Especialidad.findByIdAndDelete(req.params.id);
