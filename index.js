@@ -5,6 +5,7 @@ import routerUser from "./src/Routes/userRoutes/index.js"
 import routerDoctor from "./src/Routes/doctorRoutes/index.js"
 import routerPaciente from "./src/Routes/pacienteRoutes/index.js"
 import routerTurno from "./src/Routes/turnoRoutes/index.js"
+import routerEspecialidad from "./src/Routes/especialidadRoutes/index.js"
 import cors from "cors";
 
 
@@ -25,6 +26,7 @@ app.use('/user', routerUser)
 app.use('/doctor', routerDoctor)
 app.use('/paciente', routerPaciente)
 app.use('/turno', routerTurno)
+app.use('/especialidad', routerEspecialidad)
 
 dbConnect();
 app.listen(8080)

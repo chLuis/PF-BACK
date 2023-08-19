@@ -2,6 +2,7 @@ import Usuario from "../../Models/user.js";
 import Doctor from "../../Models/doctor.js";
 import Paciente from "../../Models/paciente.js";
 import { genSaltSync, hashSync, compareSync } from "bcrypt"; 
+import jwt from "jsonwebtoken";
 
 function generarIdAlfanumerico() {
     const caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -39,10 +40,13 @@ export const getUser = async (req, res) => {
         if (usuario.dni === Number(dni)){
             const passValidation = compareSync(password, usuario.password) // Comparamos el passhash con el pass ingresada devuelve true o false
             if(passValidation){
+                        // const token = jwt.sign(
+        //     { dni, passwordHashed },
+        //     process.env.TOKEN_SECRET
+        // );
                 usuarioLog = usuario
             }
         }})
-        console.log(usuarioLog)
     res.status(200).send(usuarioLog)
     }
 
@@ -56,15 +60,11 @@ export const getUsers = async (req, res) => {
                     apellido: user.apellido,
                     dni: user.dni,
                     direccion: user.direccion,
-                    //usuario_id: doctor.usuario_id,
                     telefono: user.telefono,
                     mail: user.mail,
                     fechaNacimiento: user.fechaNacimiento.toLocaleDateString(),
                     medico: user.medico?"Medico":"Paciente",
                     administrador: user.administrador?"Administrador":"No es administrador",
-                    //matricula: doctor.matricula,
-                    //especialidad: doctor.especialidad,
-                    //aprobado: doctor.aprobado
                 };
             }));
             res.status(200).send(userList);

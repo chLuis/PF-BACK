@@ -17,7 +17,7 @@ export const postTurno = async (req, res) => {
     try {
         const _id = generarIdAlfanumerico();
         const usuario = await Usuario.find()
-        const { dniPaciente, especialidad, dniDoctor, fecha, horario, motivo} = req.body
+        const { dniPaciente, especialidad, nombreDoctor, dniDoctor, fecha, horario, motivo} = req.body
         let doctor_id, doctorNombre, paciente_id, pacienteNombre
 
         usuario.forEach(paciente => {
@@ -36,9 +36,11 @@ export const postTurno = async (req, res) => {
             _id,
             especialidad,
             doctor_id,
+            dniDoctor,
             doctorNombre,
             paciente_id,
             pacienteNombre,
+            dniPaciente,
             fecha,
             horario,
             motivo
