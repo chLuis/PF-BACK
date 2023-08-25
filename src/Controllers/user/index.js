@@ -43,7 +43,7 @@ export const getUser = async (req, res) => {
                         const token = jwt.sign(
             { dni, password },
             process.env.TOKEN_SECRET,
-            { expiresIn: '15m' }
+            { expiresIn: '30m' }
         );
                 const {_id, idLink, nombre, apellido, dni:dni_user , direccion, telefono, mail, fechaNacimiento, medico, administrador} = usuario
                 usuarioLog = {
