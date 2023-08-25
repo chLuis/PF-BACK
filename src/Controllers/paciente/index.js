@@ -108,7 +108,7 @@ export const putPaciente = async (req, res) => {
             obraSocial,
         } = req.body;
         const paciente = await Paciente.findByIdAndUpdate(id, { obraSocial });
-        //console.log(paciente)
+        
         const pacienteId = paciente.usuario_id;
         const user = await Usuario.findByIdAndUpdate(pacienteId, {
             nombre,
