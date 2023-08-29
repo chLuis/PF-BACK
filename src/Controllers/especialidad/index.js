@@ -12,7 +12,7 @@ export const postEspecialidad = async (req, res) => {
 }
 export const getEspecialidades = async (req, res) => {
     try {
-        const especialidades = await Especialidad.find();
+        const especialidades = await Especialidad.find().sort({ especialidad: 1 });
         res.status(200).send(especialidades);
     } catch (error) {
         res.status(500).send(error);

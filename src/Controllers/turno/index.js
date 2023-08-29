@@ -55,7 +55,7 @@ export const postTurno = async (req, res) => {
 
 export const getTurnos = async (req, res) => {
     try {
-        const turnos = await Turno.find()
+        const turnos = await Turno.find().sort({ fecha: -1 })
         res.status(200).send(turnos)
     } catch (error) {
         res.status(400).send(error)
