@@ -37,11 +37,6 @@ export const postDoctor = async (req, res) => {
         const salt = genSaltSync(2);
         const passwordHashed = hashSync(password, salt);
 
-        // const token = jwt.sign(
-        //     { dni, passwordHashed },
-        //     process.env.TOKEN_SECRET
-        // );
-
         const user = new Usuario({
             _id,
             idLink: _idDoctor,
@@ -116,15 +111,15 @@ export const getDoctors = async (req, res) => {
                     //id_user: id_user,
                     nombre: nombre,
                     apellido: apellido,
-                    //direccion: direccion,
-                    //usuario_id: doctor.usuario_id,
                     dni: dni,
-                    //telefono: telefono,
-                    //mail: mail,
-                    //fechaNacimiento: fechaNacimiento.toLocaleDateString(),
                     matricula: doctor.matricula,
                     especialidad: doctor.especialidad,
                     aprobado: doctor.aprobado,
+                    //direccion: direccion,
+                    //usuario_id: doctor.usuario_id,
+                    //telefono: telefono,
+                    //mail: mail,
+                    //fechaNacimiento: fechaNacimiento.toLocaleDateString(),
                 };
             })
         );
@@ -148,7 +143,6 @@ export const getDoctorsAdmin = async (req, res) => {
                     telefono,
                     mail,
                     fechaNacimiento,
-                    //password,
                 } = await Usuario.findById(doctor.usuario_id);
                 return {
                     id_user: id_user,
@@ -190,7 +184,6 @@ export const deleteDoctor = async (req, res) => {
 export const putDoctor = async (req, res) => {
     try {
         const { id } = req.params;
-        //console.log(id)
         const {
             nombre,
             apellido,

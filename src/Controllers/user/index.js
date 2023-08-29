@@ -16,6 +16,9 @@ function generarIdAlfanumerico() {
   
     return id;
 }
+function primeraMayusRestoMinus(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
 
 
 export const postUser = async (req, res) => {
@@ -67,18 +70,18 @@ export const getUser = async (req, res) => {
 
 export const getUsers = async (req, res) => {    
         try {
-            const users = await Usuario.find();
+            const users = await Usuario.find().sort({apellido: 1});
             const userList = await Promise.all(users?.map(async user => { 
                 return {
                     id_user: user._id,
-                    nombre: user.nombre,
-                    apellido: user.apellido,
+                    nombre: primeraMayusRestoMinus(user.nombre),
+                    apellido: primeraMayusRestoMinus(user.apellido),
                     dni: user.dni,
                     direccion: user.direccion,
                     telefono: user.telefono,
                     mail: user.mail,
                     fechaNacimiento: user.fechaNacimiento.toLocaleDateString(),
-                    medico: user.medico?"Medico":"Paciente",
+                    medico: user.medico?"MEDICO":"PACIENTE",
                     administrador: user.administrador?"Administrador":"No es administrador",
                 };
             }));
