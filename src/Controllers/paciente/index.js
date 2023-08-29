@@ -131,21 +131,25 @@ export const putPaciente = async (req, res) => {
 
 export const getPacientes = async (req, res) => {
     try {
-        const pacientesConUsuarios = await Paciente.aggregate([
-            {
-                $lookup: {
-                    from: "usuarios",
-                    localField: "usuario_id",
-                    foreignField: "_id",
-                    as: "usuario",
-                },
-            },
-            {
-                $unwind: "$usuario",
-            },
-        ]);
-
-        res.status(200).send(pacientesConUsuarios);
+        const pacientes = await Paciente.find();
+        const pacientesList = await Promise.all(
+            pacientes?.map(async (paciente) => {
+                const id_user = paciente._id;
+                const {
+                    nombre,
+                    apellido,
+                    dni,
+                    mail
+                } = await Usuario.findById(paciente.usuario_id);
+                return {
+                    nombre: nombre,
+                    apellido: apellido,
+                    dni: dni,
+                    mail: mail
+                };
+            })
+        );
+        res.status(200).send(pacientesList);
     } catch (error) {
         res.status(400).send(error.message);
     }
