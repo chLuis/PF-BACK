@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/post", postPaciente);
 router.get("/get/:id", getPaciente);
-router.get("/get/", validationToken, getPacientes);
+router.get("/get/", getPacientes);
 router.delete("/delete/:id", validationToken, deletePaciente);
 router.put("/put/:id", validationToken, putPaciente);
 

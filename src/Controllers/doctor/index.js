@@ -101,9 +101,9 @@ export const getDoctors = async (req, res) => {
                     nombre,
                     apellido,
                     dni,
+                    mail,
                     //direccion,
                     //telefono,
-                    //mail,
                     //fechaNacimiento,
                     //password,
                 } = await Usuario.findById(doctor.usuario_id);
@@ -112,13 +112,13 @@ export const getDoctors = async (req, res) => {
                     nombre: nombre,
                     apellido: apellido,
                     dni: dni,
+                    mail: mail,
                     matricula: doctor.matricula,
                     especialidad: doctor.especialidad,
                     aprobado: doctor.aprobado,
                     //direccion: direccion,
                     //usuario_id: doctor.usuario_id,
                     //telefono: telefono,
-                    //mail: mail,
                     //fechaNacimiento: fechaNacimiento.toLocaleDateString(),
                 };
             })
