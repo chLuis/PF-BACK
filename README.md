@@ -19,7 +19,9 @@ Este es el backend para una aplicación de reserva de turnos en una clínica mé
 ##Crea un archivo .env en la raíz del proyecto para configurar las variables de entorno necesarias. Aquí hay un ejemplo de cómo podría verse:
 
 PORT=3000
+
 DB_URI=URL_de_conexión_a_MongoDB_Atlas
+
 JWT_SECRET=Tu_Clave_Secreta_para_JWT
 
 ##Inicia el servidor con el siguiente comando:
