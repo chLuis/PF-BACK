@@ -5,6 +5,6 @@ export const validationToken = (req, res, next) => {
     jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
         token && !err
             ? next()
-            : res.status(498).send(`Ocurrió un error: ${err.message}`);
+            : res.status(498).send(`Ocurrió un error: ${err.message}, vuelva a conectarse`);
     });
 };
