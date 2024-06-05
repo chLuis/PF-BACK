@@ -10,7 +10,12 @@ import cors from "cors";
 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: 'https://lastproyectrcg1c35i.netlify.app', // Specify the origin here
+    methods: 'GET,POST,OPTIONS,PUT,PATCH,DELETE',
+    allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept',
+    credentials: true
+}));
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
