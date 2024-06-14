@@ -10,15 +10,15 @@ import cors from "cors";
 
 
 const app = express();
-app.use(cors({
-    origin: '*', // Specify the origin here
-    methods: 'GET,POST,OPTIONS,PUT,PATCH,DELETE',
-    allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept',
-    credentials: true
-}));
+// app.use(cors({
+//     origin: 'http://localhost:8080/turno/get/', // Specify the origin here
+//     methods: 'GET,POST,OPTIONS,PUT,PATCH,DELETE',
+//     allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept',
+//     credentials: true
+// }));
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();})
